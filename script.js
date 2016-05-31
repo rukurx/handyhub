@@ -1,4 +1,17 @@
 $(function(){
+    // Open a pull request
+    var openPr = setInterval(function(){
+        var $newPr = $('.compare-pr-header');
+        var $prTitle = $('#pull_request_title');
+        // if ($newPr.is(':visible') && $prTitle.val().match(/(?!\[WIP\])/i)) {
+        if ($newPr.is(':visible')) {
+          $prTitle.val('[WIP] ');
+          $('.js-issue-assign-self').click();
+
+          clearInterval(openPr);
+        }
+    }, 1000);
+
     // Disable a merge button and a close button if work is in process
     var $issueTitle = $('.js-issue-title');
     if ($issueTitle.text().match(/wip/i)) {
